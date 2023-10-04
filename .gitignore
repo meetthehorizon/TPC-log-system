@@ -1,3 +1,4 @@
 venv
 my_tennis_club  
 tpc_log/tpc_log/.env
+tpc_log/tpc_log/__pycache__
