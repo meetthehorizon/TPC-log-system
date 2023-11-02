@@ -41,6 +41,7 @@ class User(AbstractUser):
     """
     A User class extending AbstractUser
     """
+    username = None
     address = models.TextField(blank=True, null=True)
     email = models.EmailField(_('email address'), blank=True, unique=True)
     #enumerations used in the model
@@ -144,9 +145,9 @@ class User(AbstractUser):
     
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
-    REQUIRED_FIELDS = [""]
+    REQUIRED_FIELDS = []
 
     objects = UserManager()
 
-    def _str_(self):
+    def __str__(self):
         return self.username

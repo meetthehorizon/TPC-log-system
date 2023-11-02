@@ -1,0 +1,30 @@
+{%extends dashboard.html%}
+{%block content%}
+<div>
+    <h1>Duties List</h1>
+    <table>
+        <tr>
+            <th>Company Name</th>
+            <th>Company Role</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>SPOC Name</th>
+            <th>SPOC Phone Number</th>
+        </tr>
+        {% for item in user_objects %}
+        <tr>
+            <td>{{ item.Process.Company.company_name}}</td>
+            <td>{{ item.Process.hiring_role }}</td>
+            <td>{{ item.Process.venue }}</td>
+            <td>{{ item.Process.date }}</td>
+            <td>{{ item.Process.time }}</td>
+            <td>{{ item.Process.User.name }}</td>
+            <td>{{ item.Process.User.phone_number }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
+</div>
