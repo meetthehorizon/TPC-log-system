@@ -43,7 +43,7 @@ class User(AbstractUser):
     """
     address = models.TextField(blank=True, null=True)
     email = models.EmailField(_('email address'), blank=True, unique=True)
-    #enumerations used
+    #enumerations used in the model
     BRANCH_CHOICES = (
         ('APD', 'Architecture, Planning and Design'),
         ('CER', 'Ceramic Engineering and Technology'),
@@ -82,6 +82,8 @@ class User(AbstractUser):
     )
 
     #fields
+    name = models.CharField(max_length=100, blank=False, null=False)
+
     roll_number = models.CharField(
         max_length=8,         # Enforces 8 characters length
         unique=True,          # Ensures uniqueness
