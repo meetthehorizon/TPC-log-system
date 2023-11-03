@@ -2,11 +2,10 @@ venv
 .env
 locallibrary
 temp
-.vscode
-dbsqlite3
+db.sqlite3
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+**/__pycache__
 *.py[cod]
 *$py.class
 
