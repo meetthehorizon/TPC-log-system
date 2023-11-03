@@ -1,0 +1,6 @@
+<h1>This is Homepage</h1>
+
+<!-- Add this to your template (e.g., navigation bar or user profile page) -->
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}?next={{ request.path }}">Logout</a>
+{% endif %}

@@ -1,0 +1,17 @@
+{% extends "dashboard.html" %}
+{%block content%}
+<div class="content">
+    {% if user.is_authenticated %}
+  if u can see this smile!
+  {% endif %}
+    <!-- Display user information by default -->
+    <h1>Personal Information</h1>
+    <p>Name: {{ user.name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Institute Roll Number: {{ user.roll_number }}</p>
+    <p>Degree: {{ user.degree }}</p>
+    <p>Branch: {{ user.branch }}</p>
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <!-- Display other user information fields as needed -->
+</div>
+{% endblock %}
