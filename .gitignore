@@ -2,6 +2,7 @@ venv
 .env
 locallibrary
 temp
+tpc_log/dp.sqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
