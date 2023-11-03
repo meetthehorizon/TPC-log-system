@@ -1,7 +1,7 @@
 # views.py
 
 from django.shortcuts import render
-from management.models import Duty, Process, Company
+from management.models import Duty
 from users.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required

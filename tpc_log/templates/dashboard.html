@@ -43,6 +43,7 @@
         {% if user.is_authenticated %}
             <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
             <a class="panel-link" href="{% url 'duties' %}">Duties</a>
+            <a class="panel-link" href="{% url 'company_list' %}">Company</a>
         {% endif %}
     </div>
     <a href ="{% url 'custom_logout' %}">
