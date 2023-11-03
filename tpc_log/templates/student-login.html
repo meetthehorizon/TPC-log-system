@@ -7,6 +7,9 @@
     {{ form.password }}</p>
     <button type="submit">Login</button>
 </form>
+
+<p>Click the following link to Sign up</p>
+<a href ="{% url 'signup' %}">Sign Up</a>
 {% if user.is_authenticated %}
 <a href="{% url 'custom_logout' %}">Logout</a>
 {% endif %}

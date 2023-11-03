@@ -3,6 +3,7 @@ from tpc_log.settings import AUTH_USER_MODEL
 from django.shortcuts import render, redirect, HttpResponse
 from .forms import SignUpForm, StudentLoginForm
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse
 
 def signup(request):
     if request.method == 'POST':
@@ -10,7 +11,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             # Additional custom logic after successful registration
-            return HttpResponse("signed up successfully")  # Redirect to the login page
+            return redirect(reverse('student-login'))# Redirect to the login page
 
     else:
         form = SignUpForm()
