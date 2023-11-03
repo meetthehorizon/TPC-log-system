@@ -12,7 +12,7 @@ class Process(models.Model):
     spoc_id = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        limit_choices_to={'role__ne': 'STUDENT'}  # Limit choices to users with role not equal to 'STUDENT'
+        limit_choices_to=~models.Q(role='STUDENT')  # Limit choices to users with role not equal to 'STUDENT'
     )
     venue = models.CharField(max_length=100, null=True, blank=False, default="")
     date = models.DateField(null=True, blank=True)
@@ -25,7 +25,7 @@ class Duty(models.Model):
     tpc_id = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        limit_choices_to={'role__ne': 'STUDENT'}  # Limit choices to users with role not equal to 'STUDENT'
+        limit_choices_to=~models.Q(role='STUDENT') # Limit choices to users with role not equal to 'STUDENT'
     )
 
 class Shortlist(models.Model):

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Duty List</title>
+</head>
+<body>
+    <h1>Duty List</h1>
+    
+    <ul>
+        {% for duty in duties %}
+            <li>
+                <strong>Duty Name:</strong> {{ duty.name }}<br>
+                <strong>Company Name:</strong> {{ duty.process_id.company_id.name }}<br>
+                <strong>SPOC Name:</strong> {{ duty.process_id.spoc_id.name }}<br>
+                <!-- Add other fields as needed -->
+            </li>
+        {% empty %}
+            <li>No duties found for this user.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
