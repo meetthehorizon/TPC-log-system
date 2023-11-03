@@ -3,6 +3,7 @@ venv
 locallibrary
 temp
 .vscode
+dbsqlite3
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
