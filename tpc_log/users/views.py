@@ -42,3 +42,6 @@ def student_login(request):
 def custom_logout(request):
     logout(request)
     return redirect("/")  # Change 'home' to the URL name you want to use
+
+def home(request):
+    return render(request, 'home.html')
