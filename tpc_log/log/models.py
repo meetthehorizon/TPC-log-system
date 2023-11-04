@@ -41,4 +41,4 @@ class Location(models.Model):
     student_id = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     updated_at = models.DateTimeField(auto_now=True, null=False, blank=False)
     location = models.CharField(max_length=100, null=False, blank=False)    
-    updated_by = models.CharField(max_length=100, null=False, blank=False)    
+    updated_by = models.CharField(max_length=100, null=False, blank=False)  #not needed and display in student profile itself. add error handling  

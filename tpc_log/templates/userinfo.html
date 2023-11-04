@@ -1,17 +1,61 @@
 {% extends "dashboard.html" %}
 {% block content %}
+<style>
+  .right-content {
+        margin-top: 0;
+        padding: 15px;
+        width: calc(80% - 20px); /* Adjusted width */
+        float: right; /* Float right to start where left-panel ends */
+    }
+  .field {
+    margin-bottom: 10px;
+}
+
+.field p {
+    margin: 0;
+    padding: 5px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.field-label {
+    font-weight: bold;
+    padding: 5px;
+}
+
+.field-value {
+    padding: 5px;
+}
+</style>
 <div class="right-content">
     {% if user.is_authenticated %}
-  if u can see this smile!
-  {% endif %}
-    <!-- Display user information by default -->
-    <h1>Personal Information</h1>
-    <p>Name: {{ user.name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Institute Roll Number: {{ user.roll_number }}</p>
-    <p>Degree: {{ user.degree }}</p>
-    <p>Branch: {{ user.branch }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-    <!-- Display other user information fields as needed -->
+            <h1>Personal Information</h1>
+            <div class="field">
+                <p class="field-label">Name:</p>
+                <p class="field-value">{{ user.name }}</p>
+            </div>
+            <div class="field">
+                <p class="field-label">Email:</p>
+                <p class="field-value">{{ user.email }}</p>
+            </div>
+            <div class="field">
+                <p class="field-label">Institute Roll Number:</p>
+                <p class="field-value">{{ user.roll_number }}</p>
+            </div>
+            <div class="field">
+                <p class="field-label">Degree:</p>
+                <p class="field-value">{{ user.degree }}</p>
+            </div>
+            <div class="field">
+                <p class="field-label">Branch:</p>
+                <p class="field-value">{{ user.branch }}</p>
+            </div>
+            <div class="field">
+                <p class="field-label">Phone Number:</p>
+                <p class="field-value">{{ user.phone_number }}</p>
+            </div>
+            <!-- Add other user information fields as needed -->
+    {% endif %}
 </div>
 {% endblock %}

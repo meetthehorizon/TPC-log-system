@@ -1,15 +1,87 @@
-<!-- login.html -->
-<form method="post">
-    {% csrf_token %}
-    <p>{{ form.username.label_tag }}
-    {{ form.username }}</p>
-    <p>{{ form.password.label_tag }}
-    {{ form.password }}</p>
-    <button type="submit">Login</button>
-</form>
 
-<p>Click the following link to Sign up</p>
-<a href ="{% url 'signup' %}">Sign Up</a>
-{% if user.is_authenticated %}
-<a href="{% url 'custom_logout' %}">Logout</a>
-{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        /* login.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #F8F8F8;
+}
+
+.container {
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px 30px;
+    box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #9C27B0; /* Purple */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 2px 0;
+    border: 1px solid #D1D1D1;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #9C27B0; /* Purple */
+    color: #FFF;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #7B1FA2; /* Darker Purple */
+}
+
+p {
+    text-align: center;
+    margin-top: 15px;
+}
+
+a {
+    color: #9C27B0; /* Purple */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>{{ form.username }}</p>
+            <p>{{ form.password }}</p>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
+</body>
+</html>

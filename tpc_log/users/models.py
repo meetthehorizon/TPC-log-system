@@ -29,7 +29,6 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
-
         if extra_fields.get("is_staff") is not True:
             raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
@@ -73,13 +72,13 @@ class User(AbstractUser):
 
     ROLE_CHOICES = (
         ('STUDENT', 'Student'),
-        ('TPR', 'TPR'),
+        ('TPR', 'TPR'), 
         ('TPV', 'TPV'),
-        ('CORE', 'Core'),
-        ('DUTY', 'Duty'),
-        ('VENUE', 'Venue'),
-        ('SCHEDULING', 'Scheduling'),
-        ('PORTAL', 'Portal'),
+        ('CORE', 'Core'), #role assignment permission
+        ('DUTY', 'Duty'), 
+        ('VENUE', 'Venue'), #remove
+        ('SCHEDULING', 'Scheduling'),  #remove
+        ('PORTAL', 'Portal'), #upload shortlist
     )
 
     #fields
