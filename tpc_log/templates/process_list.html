@@ -1,0 +1,100 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+  
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+  
+    th {
+      background-color: #007BFF;
+      color: #fff;
+    }
+  
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  
+    .action-link {
+      text-decoration: none;
+      padding: 5px 10px;
+      border: 1px solid #007BFF;
+      border-radius: 5px;
+      color: #007BFF;
+      margin: 0 5px;
+    }
+  
+    .action-link:hover {
+      background-color: #007BFF;
+      color: #fff;
+    }
+  
+    .create-button {
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+    }
+
+.process-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.process-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+  </style>  
+
+  <h2>Process List</h2>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>S.No.</th>
+        <th>Company</th>
+        <th>SPOC</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Hiring Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for process in processes %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ process.company_id.company_name }}</td>
+          <td>{{ process.spoc_id.name }}</td>
+          <td>{{ process.venue }}</td>
+          <td>{{ process.date }}</td>
+          <td>{{ process.time }}</td>
+          <td>{{ process.hiring_role }}</td>
+          <td>
+            <a href="{% url 'process_edit' process.process_id %}">Edit</a>
+            <a href="{% url 'process_delete' process.process_id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <a href="{% url 'process_enlist' %}" class="btn btn-primary process-button">Create New Process</a>
+
+  
+{% endblock %}

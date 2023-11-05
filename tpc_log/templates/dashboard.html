@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    {% block head %}{% endblock head %}
     <style>
         /* Style for the left panel */
         .left-panel {
@@ -44,13 +45,14 @@
             <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
             <a class="panel-link" href="{% url 'duties' %}">Duties</a>
             <a class="panel-link" href="{% url 'company_list' %}">Company</a>
+            <a class="panel-link" href="{% url 'process_list' %}">Process</a>
         {% endif %}
     </div>
     <a href ="{% url 'custom_logout' %}">
     <button class="logout-button" type='button'>Logout</button></a>
     <div class="right-content">
-        {% block content %} 
-        {% endblock %}
+        {% block content %}     
+        +        {% endblock %}
     </div>
 </body>
 </html>

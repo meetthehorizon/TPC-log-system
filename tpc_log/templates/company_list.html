@@ -2,35 +2,70 @@
 
 {% block content %}
 <style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
 
-    table, th, td {
-        border: 1px solid black;
-    }
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
 
-    th, td {
-        padding: 8px;
-        text-align: left;
-    }
+  th {
+    background-color: #007BFF;
+    color: #fff;
+  }
 
-    th {
-        background-color: #f2f2f2;
-    }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-</style>
+  .action-link {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    color: #007BFF;
+    margin: 0 5px;
+  }
+
+  .action-link:hover {
+    background-color: #007BFF;
+    color: #fff;
+  }
+
+  .create-button {
+    display: block;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+  
+.company-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.company-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+</style>  
 
 <h2>List of Companies</h2>
 
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>S.No.</th>
       <th>Company Name</th>
       <th>Actions</th>  <!-- Add a new header column for the action buttons -->
     </tr>
@@ -38,7 +73,7 @@
   <tbody>
     {% for company in companies %}
       <tr>
-        <td>{{ company.company_id }}</td>
+        <td>{{ forloop.counter }}</td>
         <td>{{ company.company_name }}</td>
         <td>
           <a href="{% url 'company_edit' company.company_id%}">Edit</a>
@@ -49,8 +84,7 @@
   </tbody>
 </table>
 
-<a href="{% url 'company_enlist' %}">
-  <button>Add Company</button>
-</a>
+<a href="{% url 'company_enlist' %}" class="btn btn-primary company-button">Add Company</a>
+
 
 {% endblock %}
