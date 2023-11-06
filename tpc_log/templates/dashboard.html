@@ -1,51 +1,58 @@
 {% extends 'base.html' %}
 {% block main_content %}
 <style>
+
+    
     .main-container {
         position: relative;
         width: 100%; /* Full width */
         height: 100vh; /* Full viewport height */
+        display: flex; /* Use flex layout for container */
     }
     .left-panel {
         position: absolute;
         top: 0; /* Positioned at the top */
         left: 0; /* Positioned at the left */
-        width: 20%;
-        background-color: #f8f8f8;
-    width: 20%; /* Set the width of the panel */
-    background-color: #f8f8f8; /* Set the background color of the panel */
-    float: left; /* Float the panel to the left */
-}
-
-/* Style for the links in the left panel */
-.panel-link {
-    text-decoration: none; /* Remove the underline */
-    color: black; /* Set the link color to black */
-    display: block; /* Display as block to take full width */
-    padding: 10px; /* Add some padding for better clickability */
-    font-size: 16px; /* Set the font size */
-}
-.right-content {
-    margin-left: 20%; /* Leave space for the left panel */
-    padding: 20px; /* Add some padding for better layout */
-}
+        width: 10%;
+        height: 100vh;
+        /* border-left: 2px solid; */
+        border-right: 2px solid rgba(221, 221, 221, 0.32);
+        background-color: #ffffff00;
+        padding: 20px; /*Add some padding for better layout*/
+        /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); Add a shadow to the panel */
+    }
+    .panel-link {
+        text-decoration: none;
+        color: black;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .panel-link:hover {
+        background-color: #ddd; /* Add a grey highlight on hover */
+    }
+    .right-content {
+        margin-left: 12%; /* Leave space for the left panel */
+        padding: 0px; /*Add some padding for better layout */
+    }
 </style>
 <div class="main-container">
-<div class="left-panel">
-    {% if user.is_authenticated %}
-        <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
-        {% if user.role == "TPR" or user.role == "TPV" %}
-        <a class="panel-link" href="{% url 'duties' %}">Duties</a>
+    <div class="left-panel">
+        {% if user.is_authenticated %}
+            <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
+            {% if user.role == "TPR" or user.role == "TPV" %}
+            <a class="panel-link" href="{% url 'duties' %}">Duties</a>
+            {% endif %}
+            {% if user.role == "STUDENT" %}
+            <a class="panel-link" href = "{% url 'shortlists' %}">Shortlists</a>
+            {% endif %}
         {% endif %}
-        {% if user.role == "Student" %}
-        <a class="panel-link" href="{% url 'priority_order' %}">Priority Order</a>
-        {% endif %}
-    {% endif %}
+    </div>
+    <div class="right-content">
+        {% block content %}
+        <!-- Your content here -->
+        {% endblock %}
+    </div>
 </div>
-
-<div class="right-content">
-    {% block content %} 
-    {% endblock %}
-</div>
-</div>
+</style>
 {% endblock %}

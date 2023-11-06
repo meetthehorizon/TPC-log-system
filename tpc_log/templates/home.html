@@ -1,12 +1,74 @@
 
 {% extends 'base.html' %}
-  
+  {% load static %}
 {% block main_content %} 
-    <div id="content">
-        <img src="your-image.jpg" alt="Image">
+<style>
+ 
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Manrope&family=Urbanist:wght@100&display=swap');
+
+    body {
+        font-family: 'DM Sans', sans-serif;
+    }
+    p {
+            font-size: 16px;
+            text-align: left; /* Content aligned to the left */
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            text-align: left; /* Content aligned to the left */
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center; /* Heading centered */
+        }
+
+        h2 {
+            font-size: 20px;
+            text-align: left; /* Heading aligned to the left */
+        }
+ 
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+    }
+</style>
+    <div id="content" >
+        <img src="{% static 'users/images/placement.jpg' %}" alt="Image" style="max-width: 100%; max-height: 200px;">
     </div>
-    <div id="text-box">
-        <p>Your text goes here.</p>
+    <div id="text-box" class="txt" >
+        <h1>Welcome to Our Campus Recruitment Management System</h1>
+
+        <p>Our Platform is your one-stop solution for efficient campus placement management. Designed to cater to the specific needs of our college community, we provide essential tools for both students and administrators.</p>
+    </div>
+
+    <div>
+        <h2>For Students:</h2>
+        <ul>
+            <li>Manage your profile and access real-time updates.</li>
+            <li>Schedule and track interview appointments.</li>
+            <li>Stay informed with centralized official announcements.</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>For Administrators:</h2>
+        <ul>
+            <li>Orchestrate on-campus placement interviews seamlessly.</li>
+            <li>Ensure accurate and timely data updates.</li>
+            <li>Streamline the entire management process.</li>
+        </ul>
+    </div>
+
+    <div>
+        <p>With a user-friendly interface and robust features, our platform is here to make the campus placement experience smoother and more organized for everyone.</p>
+    </div>
     </div>
     <div id="scroll-bar">
         <!-- Content with scroll bar -->

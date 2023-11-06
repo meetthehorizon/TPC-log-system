@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
+    <title>Our Website</title>
     <style>
         body {
             margin: 0;
@@ -16,7 +16,7 @@
         
         #header {
             background-color: #800080; /* Purple color */
-            color: #ffffff; /* White color */
+            color: white; /* White color */
             display: flex;
             justify-content: space-between; /* Aligns phone and email to the extreme right */
             align-items: center;
@@ -33,12 +33,14 @@
         }
         
         #top-bar {
-            background-color: #ffffff; /* White color */
+            background-color: #FAF9F6; /* White color */
             color: #800080; /* Purple color */
             padding: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 0;
+            color: white;
         }
         
         #top-bar a {
@@ -52,53 +54,55 @@
             background-color: #800080; /* Purple color */
             color: #ffffff; /* White color */
             font-size: 120%;
+            border-radius: 50px;
+            transition-duration: 1s;
         }
         #scroll-bar {
             /* Add your custom scroll-bar styles here */
             overflow-y: scroll;
         }
         
-        #content {
+        /* #content {
             width: 100%;
             border: 1px solid #800080; /* Purple border */
-            padding: 20px;
+         /*   padding: 20px;
             text-align: center;
-        }
+            box-shadow: 2px 2px 5px #888888; /* Slight shadow effect */
+    
         
-        #image-box {
-            width: 100%;
-            border: 1px solid #800080; /* Purple border */
-            padding: 20px;
+        
+        .main-content-box {
+            /* width: 1160px; */
+            /* border: 1px solid #800080; Purple border */
+            padding: 10px;
+            /* margin: 0 auto; */
             text-align: center;
+            /* box-shadow: 0px 0px 15px 5px #888888; Slight shadow effect */
+            /* display: flex; */
         }
-        
-        #text-box {
-            width: 100%;
-            border: 1px solid #800080; /* Purple border */
-            padding: 20px;
-            text-align: center;
-        }
-        
+
     </style>
 </head>
 <body>
     <div id="header">
-        <h1>Heading</h1>
+        <h1>GradConnect</h1>
         <div id="contact-info">
-            <p>Phone: +91 XX </p>
-            <p>Email: tpo@email.com</p>
+            <p>Phone: +91 87329125XX </p>
+            <p>Email: gradconnect[at]email[dot]com</p>
         </div>
     </div>
     <div id="top-bar">
-        <a href="#">Home</a>
+        <a href= " {% url 'home' %}">Home</a>
         {% if user.is_authenticated %}
             <a href="{% url 'custom_logout' %}" style="margin-left: auto;">Logout</a>
         {% else %}
             <a href="{% url 'student-login' %}" style="margin-left: auto;">Login</a>
         {% endif %}
     </div>
-
-    {% block main_content %}{% endblock %}
+    <div class="main-content-box">
+        {% block main_content %}{% endblock %}
+    </div>
+    
 
 
     

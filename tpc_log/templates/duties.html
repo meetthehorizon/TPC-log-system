@@ -27,7 +27,7 @@
             background-color: #ffffff;
         }
     </style>
-<div>
+<div class="right-content">
   <h1>Duties List</h1>
     <table>
         <tr>
@@ -41,7 +41,9 @@
         </tr>
         {% for duty in duties %}
         <tr>
-            <td><a href="{% url 'logview' %}">{{ duty.process_id.company_id.company_name }}</a></td>
+            {% with process_id=duty.process_id.process_id %}
+            <td><a href="{% url 'logview' process_id %}">{{ duty.process_id.company_id.company_name }}</a></td>
+            {% endwith %}
             <td>{{ duty.process_id.hiring_role }}</td>
             <td>{{ duty.process_id.venue }}</td>
             <td>{{ duty.process_id.date }}</td>
