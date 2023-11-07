@@ -1,0 +1,66 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<style>
+    .form-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .form-table th,
+    .form-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .form-table th {
+        text-align: right;
+        width: 30%;
+    }
+
+    .form-table td {
+        text-align: left;
+    }
+
+    .form-table input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-table input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .back-button, .submit-button {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 4px;
+    }
+</style>
+
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <table class="form-table">
+        <tr>
+            <th><label for="{{ form.company_name.id_for_label }}">Company Name:</label></th>
+            <td>{{ form.company_name }}</td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit" class="submit-button">
+</form>
+
+<a href="{% url 'company_list' %}" class="back-button">Back to Company List</a>
+
+{% endblock %}
