@@ -1,0 +1,18 @@
+.left-panel {
+    width: 20%; /* Set the width of the panel */
+    background-color: #f8f8f8; /* Set the background color of the panel */
+    float: left; /* Float the panel to the left */
+}
+
+/* Style for the links in the left panel */
+.panel-link {
+    text-decoration: none; /* Remove the underline */
+    color: black; /* Set the link color to black */
+    display: block; /* Display as block to take full width */
+    padding: 10px; /* Add some padding for better clickability */
+    font-size: 16px; /* Set the font size */
+}
+.right-content {
+    margin-left: 20%; /* Leave space for the left panel */
+    padding: 20px; /* Add some padding for better layout */
+}

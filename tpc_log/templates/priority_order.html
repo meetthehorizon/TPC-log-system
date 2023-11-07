@@ -1,0 +1,55 @@
+{% extends 'dashboard.html' %}
+{% block content %}
+<style>
+    .container {
+    display: flex;
+    align-items: center;
+}
+
+.companies-list,
+.priority-list {
+    flex: 1;
+}
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="companies-list">
+            <h3>Available Companies</h3>
+            <select id="available-companies" size="10" multiple>
+                {% for company in available_companies %}
+                    <option value="{{ company.id }}">{{ company.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="buttons">
+            <button id="add-button" type="button">Add &gt;&gt;</button>
+            <button id="remove-button" type="button">&lt;&lt; Remove</button>
+        </div>
+        <div class="priority-list">
+            <h3>Your Priority List</h3>
+            <select id="priority-list" name="priority_list" size="10" multiple>
+                {% for priority in user_priority.priority_list.all %}
+                    <option value="{{ priority.id }}">{{ priority.company.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <input type="submit" value="Save">
+</form>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#add-button").click(function () {
+            $("#available-companies option:selected").each(function () {
+                $(this).remove().appendTo("#priority-list");
+            });
+        });
+
+        $("#remove-button").click(function () {
+            $("#priority-list option:selected").each(function () {
+                $(this).remove().appendTo("#available-companies");
+            });
+        });
+    });
+</script>

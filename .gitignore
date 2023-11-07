@@ -1,7 +1,6 @@
 venv
 .env
 locallibrary
-.vscode
 temp
 db.sqlite3
 

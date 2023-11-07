@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.validators import UnicodeUsernameValidator
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, EmailValidator
+
 
 class UserManager(BaseUserManager):
     """
@@ -29,13 +30,17 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("is_active", True)
-
         if extra_fields.get("is_staff") is not True:
             raise ValueError(_("Superuser must have is_staff=True."))
         if extra_fields.get("is_superuser") is not True:
             raise ValueError(_("Superuser must have is_superuser=True."))
         return self.create_user(email, password, **extra_fields)
 
+from django.core.exceptions import ValidationError
+
+def validate_email_domain(value):
+    if not value.endswith("@itbhu.ac.in"):
+        raise ValidationError("Email address must end with @itbhu.ac.in")
 
 class User(AbstractUser):
     """
@@ -43,7 +48,7 @@ class User(AbstractUser):
     """
     username = None
     address = models.TextField(blank=True, null=True)
-    email = models.EmailField(_('email address'), blank=True, unique=True)
+    email = models.EmailField(_('email address'), blank=True, unique=True, validators=[EmailValidator(message='Enter a valid email address.'), validate_email_domain])
     #enumerations used in the model
     BRANCH_CHOICES = (
         ('APD', 'Architecture, Planning and Design'),
@@ -73,13 +78,13 @@ class User(AbstractUser):
 
     ROLE_CHOICES = (
         ('STUDENT', 'Student'),
-        ('TPR', 'TPR'),
+        ('TPR', 'TPR'), 
         ('TPV', 'TPV'),
-        ('CORE', 'Core'),
-        ('DUTY', 'Duty'),
-        ('VENUE', 'Venue'),
-        ('SCHEDULING', 'Scheduling'),
-        ('PORTAL', 'Portal'),
+        ('CORE', 'Core'), #role assignment permission
+        ('DUTY', 'Duty'), 
+        ('VENUE', 'Venue'), #remove
+        ('SCHEDULING', 'Scheduling'),  #remove
+        ('PORTAL', 'Portal'), #upload shortlist
     )
 
     #fields

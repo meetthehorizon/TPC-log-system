@@ -57,7 +57,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'tpc_log.urls'
 
 TEMPLATES = [
-    {
+    {#
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
@@ -121,7 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -131,5 +131,9 @@ AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL ='/student-login/'
 LOGIN_REDIRECT_URL ='/'
+#MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
