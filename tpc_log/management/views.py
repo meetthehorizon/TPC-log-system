@@ -3,12 +3,14 @@ from users.models import User
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.decorators.cache import never_cache
-from management.models import Company, Process
+from management.models import Company, Process, Duty
 from management.forms import CompanyForm, ProcessForm
 
 def permission_company(user):
     return True
 def permission_process(user):
+    return True
+def permission_duty(user):
     return True
 
 # Create your views here.
@@ -122,3 +124,22 @@ def ProcessEdit(request, process_id):
         form = ProcessForm(instance=process)
 
     return render(request, 'process_edit.html', {'form': form, 'process': process})
+
+@never_cache
+@login_required
+@user_passes_test(permission_duty)
+def DutyList(request, process_id=None):
+    duties = Duty.objects.all().select_related('process_id__company_id', 'process_id__spoc_id')
+    if process_id != None:
+        duties = duties.filter(process_id=process_id)
+
+    if duties.count() == 0:
+        return HttpResponse(f"No duties found")
+    
+    if process_id != None:
+        for duty in duties:
+            company_name = duty.process_id.company_id.company_name
+
+        return render(request, 'duty_list.html', {'duties': duties})
+    else:
+        return render(request, 'duties.html', {'duties': duties})

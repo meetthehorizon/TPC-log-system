@@ -53,10 +53,10 @@ def userinfo(request):
 @never_cache
 @login_required
 def duties_view(request):
-    user_id = request.user.roll_number
+    user_id = request.user
     duties = Duty.objects.filter(tpc_id=user_id).select_related('process_id__company_id', 'process_id__spoc_id')
     if not duties.exists():
-        return HttpResponse("No duties found for this user", status=404)
+        return HttpResponse(f"No duties found for hey {user_id}", status=404)
     else:
         return render(request, 'duties.html', {'duties': duties})
 

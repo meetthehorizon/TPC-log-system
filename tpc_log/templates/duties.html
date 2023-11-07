@@ -1,55 +1,61 @@
-{% extends 'dashboard.html' %}
-{% block content %}
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+{% extends 'dashboard.html' %} {% block content %}
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
 
-        table, th, td {
-            border: 1px solid #000;
-        }
+  table,
+  th,
+  td {
+    border: 1px solid #000;
+  }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+  }
 
-        th {
-            background-color: #f2f2f2;
-        }
+  th {
+    background-color: #f2f2f2;
+  }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
 
-        tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-    </style>
+  tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+</style>
 <div>
   <h1>Duties List</h1>
-    <table>
-        <tr>
-            <th>Company Name</th>
-            <th>Company Role</th>
-            <th>Venue</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>SPOC Name</th>
-            <th>SPOC Phone Number</th>
-        </tr>
-        {% for duty in duties %}
-        <tr>
-            <td><a href="{% url 'logview' %}">{{ duty.process_id.company_id.company_name }}</a></td>
-            <td>{{ duty.process_id.hiring_role }}</td>
-            <td>{{ duty.process_id.venue }}</td>
-            <td>{{ duty.process_id.date }}</td>
-            <td>{{ duty.process_id.time }}</td>
-            <td>{{ duty.process_id.spoc_id.name }}</td>
-            <td>{{ duty.process_id.spoc_id.phone_number }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+  <table>
+    <tr>
+      <th>Company Name</th>
+      <th>Company Role</th>
+      <th>Venue</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>SPOC Name</th>
+      <th>SPOC Phone Number</th>
+    </tr>
+    {% for duty in duties %}
+    <tr>
+      <td>
+        <a href="{% url 'logview' %}"
+          >{{ duty.process_id.company_id.company_name }}</a
+        >
+      </td>
+      <td>{{ duty.process_id.hiring_role }}</td>
+      <td>{{ duty.process_id.venue }}</td>
+      <td>{{ duty.process_id.date }}</td>
+      <td>{{ duty.process_id.time }}</td>
+      <td>{{ duty.process_id.spoc_id.name }}</td>
+      <td>{{ duty.process_id.spoc_id.phone_number }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 </div>
 {% endblock %}

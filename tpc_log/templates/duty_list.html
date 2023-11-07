@@ -1,22 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Duty List</title>
-</head>
-<body>
-    <h1>Duty List</h1>
-    
-    <ul>
-        {% for duty in duties %}
-            <li>
-                <strong>Duty Name:</strong> {{ duty.name }}<br>
-                <strong>Company Name:</strong> {{ duty.process_id.company_id.name }}<br>
-                <strong>SPOC Name:</strong> {{ duty.process_id.spoc_id.name }}<br>
-                <!-- Add other fields as needed -->
-            </li>
-        {% empty %}
-            <li>No duties found for this user.</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "dashboard.html" %} {% block content %}
+
+<h1><a href="{% url 'logview' %}">Duty List</a></h1>
+
+<table class="table">
+  <tr>
+    <th>TPC name</th>
+    <th>TPC role</th>
+    <th>Company Name</th>
+    <th>Company Role</th>
+    <th>Venue</th>
+    <th>Date</th>
+    <th>Time</th>
+  </tr>
+  {% for duty in duties %}
+  <tr>
+    <td>{{ duty.tpc_id.name }}</td>
+    <td>{{ duty.tpc_id.role }}</td>
+    <td>{{ duty.process_id.company_id.company_name }}</td>
+    <td>{{ duty.process_id.hiring_role }}</td>
+    <td>{{ duty.process_id.venue }}</td>
+    <td>{{ duty.process_id.date }}</td>
+    <td>{{ duty.process_id.time }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<style>
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 20px;
+  }
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+
+{% endblock %}

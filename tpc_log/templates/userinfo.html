@@ -1,17 +1,48 @@
-{% extends "dashboard.html" %}
-{% block content %}
+{% extends "dashboard.html" %} {% block content %}
+<style>
+  .right-content {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: left;
+    font-family: Arial, sans-serif; /* Change the font to Arial or any preferred font */
+  }
+
+  h1 {
+    color: #333;
+    font-size: 32px; /* Increase the font size */
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin: 15px 0; /* Increase the margin for more spacing between paragraphs */
+    font-size: 18px; /* Increase the font size */
+    color: #555;
+  }
+
+  p strong {
+    font-weight: bold;
+    color: #007bff;
+  }
+</style>
+
 <div class="right-content">
-    {% if user.is_authenticated %}
-  if u can see this smile!
+  {% if user.is_authenticated %}
+  <!-- Add conditional styling here if needed -->
   {% endif %}
-    <!-- Display user information by default -->
-    <h1>Personal Information</h1>
-    <p>Name: {{ user.name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Institute Roll Number: {{ user.roll_number }}</p>
-    <p>Degree: {{ user.degree }}</p>
-    <p>Branch: {{ user.branch }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-    <!-- Display other user information fields as needed -->
+  <!-- Display user information by default -->
+  <h1>Personal Information</h1>
+  <p><strong>Name:</strong> {{ user.name }}</p>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+  <p><strong>Institute Roll Number:</strong> {{ user.roll_number }}</p>
+  <p><strong>Degree:</strong> {{ user.degree }}</p>
+  <p><strong>Branch:</strong> {{ user.branch }}</p>
+  <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+  <!-- Display other user information fields as needed -->
 </div>
 {% endblock %}
