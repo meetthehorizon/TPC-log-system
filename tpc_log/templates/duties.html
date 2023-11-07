@@ -34,7 +34,7 @@
     }
 
     th, td {
-        border: 1px solid #ddd;
+        border: 1px solid #800080; /* Border color for table cells */
     }
 
     .filter-form {
@@ -105,35 +105,31 @@
         <thead>
         <tr>
             <th>Company</th>
+            <th>Company Role</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Time</th>
-            <th>TPC Member</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Actions</th>
+            <th>SPOC</th>
+            <th>SPOC Phone</th>
+            <th>SPOC Email</th>
         </tr>
         </thead>
         <tbody>
         {% for duty in duties %}
         <tr>
-            <td>{{ duty.process_id.company_id.company_name }}</td>
+            {% with process_id=duty.process_id.process_id %}
+            <td><a href="{% url 'logview' process_id %}">{{ duty.process_id.company_id.company_name }}</a></td>
+            {% endwith %}
+            <td>{{ duty.process_id.hiring_role }}</td>
             <td>{{ duty.process_id.venue }}</td>
             <td>{{ duty.process_id.date }}</td>
             <td>{{ duty.process_id.time }}</td>
-            <td>{{ duty.tpc_id.name }}</td>
-            <td>{{ duty.tpc_id.phone_number }}</td>
-            <td>{{ duty.tpc_id.email }}</td>
-            <td>
-                <a href="{% url 'duty_edit' duty.duty_id%}" class="edit-button">Edit</a>
-                <a href="{% url 'duty_delete' duty.duty_id %}" class="delete-button">Delete</a>
-            </td>
+            <td>{{ duty.process_id.spoc_id.name }}</td>
+            <td>{{ duty.process_id.spoc_id.phone_number }}</td>
+            <td>{{ duty.process_id.spoc_id.email }}</td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'duty_enlist' %}" class="btn btn-primary company-button"
-       >Add Duty</a
-    >
 </div>
 {% endblock %}
