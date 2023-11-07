@@ -1,48 +1,80 @@
-{% extends "dashboard.html" %} {% block content %}
+{% extends "dashboard.html" %}
+{% block content %}
 <style>
-  .right-content {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: left;
-    font-family: Arial, sans-serif; /* Change the font to Arial or any preferred font */
-  }
+    .right-content {
+        margin-top: 0;
+        left :20%;
+        padding: 0px;
+        width: calc(80% - 20px);
+        float: left;
+        text-align: left;
+    }
 
-  h1 {
-    color: #333;
-    font-size: 32px; /* Increase the font size */
-    margin-bottom: 20px;
-    text-transform: uppercase;
-  }
+    .user-info-box {
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 0px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-  p {
-    margin: 15px 0; /* Increase the margin for more spacing between paragraphs */
-    font-size: 18px; /* Increase the font size */
-    color: #555;
-  }
+    .field {
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 0px;
+        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+        height: auto;
+        width: 100%;
+    }
 
-  p strong {
-    font-weight: bold;
-    color: #007bff;
-  }
+    .field-label {
+        font-weight: bold;
+        font-size: 18px;
+        color: #333;
+        padding-left: 20px;
+    }
+
+    .field-value {
+        font-size: 16px;
+        color: #666;
+        
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Add some spacing between user info boxes */
+    .user-info-box + .user-info-box {
+        margin-top: 0px;
+    }
 </style>
-
 <div class="right-content">
-  {% if user.is_authenticated %}
-  <!-- Add conditional styling here if needed -->
-  {% endif %}
-  <!-- Display user information by default -->
-  <h1>Personal Information</h1>
-  <p><strong>Name:</strong> {{ user.name }}</p>
-  <p><strong>Email:</strong> {{ user.email }}</p>
-  <p><strong>Institute Roll Number:</strong> {{ user.roll_number }}</p>
-  <p><strong>Degree:</strong> {{ user.degree }}</p>
-  <p><strong>Branch:</strong> {{ user.branch }}</p>
-  <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
-  <!-- Display other user information fields as needed -->
+    {% if user.is_authenticated %}
+        <h1>Personal Information</h1>
+        <div >
+            <div class="field">
+                <p class="field-label">Name: <span class="field-value">{{ user.name }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Email: <span class="field-value">{{ user.email }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Institute Roll Number: <span class="field-value">{{ user.roll_number }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Degree: <span class="field-value">{{ user.degree }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Branch: <span class="field-value">{{ user.branch }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Phone Number: <span class="field-value">{{ user.phone_number }}</span></p>
+            </div>
+            <!-- Add other user information fields as needed -->
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
