@@ -31,7 +31,7 @@ def student_login(request):
                 context ={ 'user': user,
                           'is_tpr': is_tpr}
                 # Redirect to a success page or any other desired page
-                return render(request,'dashboard.html', context)
+                return render(request,'userinfo.html', context)
             else:
                 return HttpResponse("user dne")
     else:
@@ -42,3 +42,6 @@ def student_login(request):
 def custom_logout(request):
     logout(request)
     return redirect("/")  # Change 'home' to the URL name you want to use
+
+def home(request):
+    return render(request, 'home.html')

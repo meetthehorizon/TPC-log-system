@@ -1,57 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    {% block head %}{% endblock head %}
-    <style>
-      /* Style for the left panel */
-      .left-panel {
-        width: 20%; /* Set the width of the panel */
-        background-color: #f8f8f8; /* Set the background color of the panel */
-        float: left; /* Float the panel to the left */
-      }
-
-      /* Style for the links in the left panel */
-      .panel-link {
-        text-decoration: none; /* Remove the underline */
-        color: black; /* Set the link color to black */
-        display: block; /* Display as block to take full width */
-        padding: 10px; /* Add some padding for better clickability */
-        font-size: 16px; /* Set the font size */
-      }
-
-      /* Style for the logout button */
-      .logout-button {
-        float: right; /* Float the button to the right */
-        margin-right: 10px; /* Add margin for spacing */
-        margin-top: 10px; /* Add margin for spacing */
-        padding: 10px 20px; /* Add padding for better clickability */
-        background-color: #e9d9d9; /* Set the background color of the button */
-        color: rgb(8, 0, 0); /* Set the text color of the button */
-        border: none; /* Remove the button border */
-        border-radius: 5px; /* Add rounded corners to the button */
-        cursor: pointer; /* Change the cursor on hover */
-      }
-
-      /* Style for the right content */
-      .right-content {
-        margin-left: 20%; /* Leave space for the left panel */
-        padding: 20px; /* Add some padding for better layout */
-      }
-    </style>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% block main_content %}
+<style>
+     .main-container {
+        position: relative;
+        width: 100%; /* Full width */
+        height: 100vh; /* Full viewport height */
+        display: flex; /* Use flex layout for container */
+    }
+    .left-panel {
+        position: absolute;
+        top: 0; /* Positioned at the top */
+        left: 0; /* Positioned at the left */
+        width: 10%;
+        height: 100vh;
+        /* border-left: 2px solid; */
+        border-right: 2px solid rgba(221, 221, 221, 0.32);
+        background-color: #ffffff00;
+        padding: 20px; /*Add some padding for better layout*/
+        /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); Add a shadow to the panel */
+    }
+    .panel-link {
+        text-decoration: none;
+        color: black;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .panel-link:hover {
+        background-color: #ddd; /* Add a grey highlight on hover */
+    }
+    .right-content {
+        margin-left: 12%; /* Leave space for the left panel */
+        padding: 0px; /*Add some padding for better layout */
+    }
+</style>
+<div class="main-container">
     <div class="left-panel">
-      {% if user.is_authenticated %}
-      <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
-      <a class="panel-link" href="{% url 'duties' %}">Duties</a>
-      <a class="panel-link" href="{% url 'company_list' %}">Company</a>
-      <a class="panel-link" href="{% url 'process_list' %}">Process</a>
-      <a class="panel-link" href="{% url 'duty_list' %}">Team Duties</a>
-      {% endif %}
+         {% if user.is_authenticated %}
+            <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
+            {% if user.role == "TPR" or user.role == "TPV" %}
+            <a class="panel-link" href="{% url 'duties' %}">Duties</a>
+            {% endif %}
+            {% if user.role == "STUDENT" %}
+            <a class="panel-link" href = "{% url 'shortlists' %}">Shortlists</a>
+            {% endif %}
+            <a class="panel-link" href="{% url 'company_list' %}">Company</a>
+            <a class="panel-link" href="{% url 'process_list' %}">Process</a>
+            <a class="panel-link" href="{% url 'duty_list' %}">Team Duties</a>
+        {% endif %}
     </div>
-    <a href="{% url 'custom_logout' %}">
-      <button class="logout-button" type="button">Logout</button></a
-    >
-    <div class="right-content">{% block content %} + {% endblock %}</div>
-  </body>
-</html>
+    <div class="right-content">
+        {% block content %}
+        <!-- Your content here -->
+        {% endblock %}
+    </div>
+</div>
+</style>
+{% endblock %}
