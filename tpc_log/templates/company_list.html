@@ -4,6 +4,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 150px;
   }
 
   th,
@@ -13,7 +14,7 @@
   }
 
   th {
-    background-color: #007bff;
+    background-color: #800080;
     color: #fff;
   }
 
@@ -24,14 +25,14 @@
   .action-link {
     text-decoration: none;
     padding: 5px 10px;
-    border: 1px solid #007bff;
+    border: 1px solid #800080;
     border-radius: 5px;
-    color: #007bff;
+    color: #800080;
     margin: 0 5px;
   }
 
   .action-link:hover {
-    background-color: #007bff;
+    background-color: #5a005a;
     color: #fff;
   }
 
@@ -44,7 +45,7 @@
   .company-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #800080;
     color: #fff;
     text-decoration: none;
     border: none;
@@ -54,7 +55,7 @@
   }
 
   .company-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #5a005a; /* Darker shade on hover */
   }
 </style>
 
@@ -75,8 +76,8 @@
       <td>{{ forloop.counter }}</td>
       <td>{{ company.company_name }}</td>
       <td>
-        <a href="{% url 'company_edit' company.company_id%}">Edit</a>
-        <a href="{% url 'company_delete' company.company_id %}">Delete</a>
+        <a href="{% url 'company_edit' company.company_id%}" class ='company-button'>Edit</a>
+        <a href="{% url 'company_delete' company.company_id %}" class ='company-button'>Delete</a>
       </td>
     </tr>
     {% endfor %}

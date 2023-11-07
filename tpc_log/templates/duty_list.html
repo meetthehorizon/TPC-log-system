@@ -3,13 +3,14 @@
 {% block content %}
 <style>
     h2 {
-      color: #007BFF;
+      color: #800080;
     }
   
     table {
       width: 90vw;
       border-collapse: collapse;
       margin-top: 20px;
+      margin-left: 40px;
     }
   
     th, td {
@@ -18,7 +19,7 @@
     }
   
     th {
-      background-color: #007BFF;
+      background-color: #800080;
       color: #fff;
     }
   
@@ -47,7 +48,7 @@
   
     .filter-form button {
       padding: 5px 10px;
-      background-color: #007BFF;
+      background-color: #800080;
       color: #fff;
       border: none;
       border-radius: 5px;
@@ -55,8 +56,23 @@
     }
   
     .filter-form button:hover {
-      background-color: #0056b3;
+      background-color: #5a005a;
     }
+    .process-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #800080;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .process-button:hover {
+    background-color: #5a005a; /* Darker shade on hover */
+  }
   </style>
 <h2>Duty List</h2>
 
@@ -97,14 +113,14 @@
         <td>{{ duty.tpc_id.phone_number }}</td>
         <td>{{ duty.tpc_id.email }}</td>
         <td>
-            <a href="{% url 'duty_edit' duty.duty_id%}">Edit</a>
-            <a href="{% url 'duty_delete' duty.duty_id %}">Delete</a>
+            <a href="{% url 'duty_edit' duty.duty_id%}" class="process-button">Edit</a>
+            <a href="{% url 'duty_delete' duty.duty_id %}" class ='process-button'>Delete</a>
           </td>
       </tr>
     {% endfor %}
   </tbody>
 </table>
-<a href="{% url 'duty_enlist' %}" class="btn btn-primary company-button"
+<a href="{% url 'duty_enlist' %}" class="btn btn-primary process-button"
   >Add Duty</a
 >
 </div>

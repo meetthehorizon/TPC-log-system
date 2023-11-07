@@ -1,6 +1,25 @@
 {% extends "dashboard.html" %}
 
 {% block content %}
+<style>
+
+  .action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #800080;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin: 10px;
+  }
+
+  .process-button:hover {
+    background-color: #5a005a; /* Darker shade on hover */
+  }
+</style>
 <h2>Shortlist List</h2>
 
 <form method="GET" action="{% url 'shortlist_list' %}">
@@ -30,7 +49,7 @@
   </div>
 </form>
 
-<div class="action-buttons">
+<div class="action-buttons" >
   <a href="{% url 'shortlist_enlist' %}" class="action-button">Create Shortlist</a>
 </div>
 

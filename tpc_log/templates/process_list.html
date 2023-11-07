@@ -4,6 +4,7 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 40px;
   }
 
   th,
@@ -13,38 +14,43 @@
   }
 
   th {
-    background-color: #007bff;
+    background-color: #800080;
     color: #fff;
   }
 
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-
+  th, td {
+        border: 1px solid #800080; /* Border color for table cells */
+    }
   .action-link {
     text-decoration: none;
     padding: 5px 10px;
-    border: 1px solid #007bff;
+    border: 1px solid #800080;
     border-radius: 5px;
-    color: #007bff;
+    color: #800080;
     margin: 0 5px;
   }
 
   .action-link:hover {
-    background-color: #007bff;
+    background-color: #5a005a;
     color: #fff;
   }
 
   .create-button {
-    display: block;
-    margin-top: 20px;
-    text-decoration: none;
+    background-color: #800080; /* Purplish color, you can adjust the shade */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
   }
 
   .process-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #800080;
     color: #fff;
     text-decoration: none;
     border: none;
@@ -54,7 +60,7 @@
   }
 
   .process-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #5a005a; /* Darker shade on hover */
   }
 </style>
 
@@ -88,8 +94,8 @@
       <td>{{ process.time }}</td>
       <td>{{ process.hiring_role }}</td>
       <td>
-        <a href="{% url 'process_edit' process.process_id %}">Edit</a>
-        <a href="{% url 'process_delete' process.process_id %}">Delete</a>
+        <a href="{% url 'process_edit' process.process_id %}" class="process-button">Edit</a>
+        <a href="{% url 'process_delete' process.process_id %}" class="process-button">Delete</a>
       </td>
     </tr>
     {% endfor %}
