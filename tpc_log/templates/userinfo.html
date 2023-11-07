@@ -1,17 +1,80 @@
 {% extends "dashboard.html" %}
 {% block content %}
+<style>
+    .right-content {
+        margin-top: 0;
+        left :20%;
+        padding: 0px;
+        width: calc(80% - 20px);
+        float: left;
+        text-align: left;
+    }
+
+    .user-info-box {
+        margin-bottom: 20px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 0px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .field {
+        margin-bottom: 10px;
+        border: 1px solid #e0e0e0;
+        border-radius: 5px;
+        padding: 0px;
+        /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+        height: auto;
+        width: 100%;
+    }
+
+    .field-label {
+        font-weight: bold;
+        font-size: 18px;
+        color: #333;
+        padding-left: 20px;
+    }
+
+    .field-value {
+        font-size: 16px;
+        color: #666;
+        
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    /* Add some spacing between user info boxes */
+    .user-info-box + .user-info-box {
+        margin-top: 0px;
+    }
+</style>
 <div class="right-content">
     {% if user.is_authenticated %}
-  if u can see this smile!
-  {% endif %}
-    <!-- Display user information by default -->
-    <h1>Personal Information</h1>
-    <p>Name: {{ user.name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Institute Roll Number: {{ user.roll_number }}</p>
-    <p>Degree: {{ user.degree }}</p>
-    <p>Branch: {{ user.branch }}</p>
-    <p>Phone Number: {{ user.phone_number }}</p>
-    <!-- Display other user information fields as needed -->
+        <h1>Personal Information</h1>
+        <div >
+            <div class="field">
+                <p class="field-label">Name: <span class="field-value">{{ user.name }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Email: <span class="field-value">{{ user.email }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Institute Roll Number: <span class="field-value">{{ user.roll_number }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Degree: <span class="field-value">{{ user.degree }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Branch: <span class="field-value">{{ user.branch }}</span></p>
+            </div>
+            <div class="field">
+                <p class="field-label">Phone Number: <span class="field-value">{{ user.phone_number }}</span></p>
+            </div>
+            <!-- Add other user information fields as needed -->
+        </div>
+    {% endif %}
 </div>
 {% endblock %}
