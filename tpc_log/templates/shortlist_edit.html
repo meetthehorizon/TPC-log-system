@@ -1,0 +1,10 @@
+{% extends "dashboard.html" %} {% block content %}
+<h2>Create or Update Shortlist Entry</h2>
+
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+
+  <button type="submit" class="btn btn-primary">Save</button>
+  <a href="{% url 'shortlist_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<h2>Shortlist List</h2>
+
+<form method="GET" action="{% url 'shortlist_list' %}">
+  <div class="filter-form">
+    <label for="student_filter">Filter by Student:</label>
+    <select id="student_filter" name="student">
+      <option value="">All Students</option>
+      {% for student in students %}
+        <option value="{{ student.roll_number }}" {% if student.roll_number == request.GET.student %}selected{% endif %}>
+          {{ student.roll_number }} - {{ student.name }}
+        </option>
+      {% endfor %}
+    </select>
+
+    <label for="company_filter">Filter by Company:</label>
+    <select id="company_filter" name="company">
+      <option value="">All Companies</option>
+      {% for company in companies %}
+        <option value="{{ company.company_id }}" {% if company.company_id|slugify == request.GET.company %}selected{% endif %}>{{ company.company_name }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="date_filter">Filter by Date:</label>
+    <input type="date" id="date_filter" name="date" value="{{ request.GET.date }}">
+
+    <button type="submit">Apply Filter</button>
+  </div>
+</form>
+
+<div class="action-buttons">
+  <a href="{% url 'shortlist_enlist' %}" class="action-button">Create Shortlist</a>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company Name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Student Name</th>
+      <th>Student Roll Number</th>
+      <th>Student Branch</th>
+      <th>Student Email</th>
+      <th>Student Phone Number</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for shortlist in shortlists %}
+      <tr>
+        <td>{{ shortlist.process_id.company_id.company_name }}</td>
+        <td>{{ shortlist.process_id.date }}</td>
+        <td>{{ shortlist.process_id.time }}</td>
+        <td>{{ shortlist.student_id.name }}</td>
+        <td>{{ shortlist.student_id.roll_number }}</td>
+        <td>{{ shortlist.student_id.branch }}</td>
+        <td>{{ shortlist.student_id.email }}</td>
+        <td>{{ shortlist.student_id.phone_number }}</td>
+        <td>
+          <a href="{% url 'shortlist_edit' shortlist.shortlist_id %}" class="action-button">Edit</a>
+          <a href="{% url 'shortlist_delete' shortlist.shortlist_id %}" class="action-button">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

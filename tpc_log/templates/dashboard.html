@@ -40,12 +40,12 @@
     <div class="left-panel">
         {% if user.is_authenticated %}
             <a class="panel-link" href="{% url 'userinfo' %}">User Info</a>
-            {% if user.role == "TPR" or user.role == "TPV" %}
             <a class="panel-link" href="{% url 'duties' %}">Duties</a>
-            {% endif %}
-            {% if user.role == "STUDENT" %}
             <a class="panel-link" href = "{% url 'shortlists' %}">Shortlists</a>
-            {% endif %}
+            <a class="panel-link" href = "{% url 'process_list' %}">Process</a>
+            <a class="panel-link" href = "{% url 'company_list' %}">Company</a>
+            <a class="panel-link" href = "{% url 'duty_list' %}">Duty List</a>
+            <a class="panel-link" href = "{% url 'shortlist_list' %}">Shortlist List</a>
         {% endif %}
     </div>
     <div class="right-content">

@@ -1,0 +1,11 @@
+{% extends "dashboard.html" %} {% block content %}
+<h2>Add Duty</h2>
+
+<form method="post">
+  {% csrf_token %} {{ form.as_p }}
+
+  <button type="submit">Add Duty</button>
+</form>
+
+<a href="{% url 'duty_list' %}" class="action-link">Back to Duty List</a>
+{% endblock %}

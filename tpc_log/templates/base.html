@@ -2,107 +2,100 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Website</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            font-family: Arial, sans-serif;
-        }
-        
-        #header {
-            background-color: #800080; /* Purple color */
-            color: white; /* White color */
-            display: flex;
-            justify-content: space-between; /* Aligns phone and email to the extreme right */
-            align-items: center;
-            padding: 10px;
-        }
-        
-        #contact-info {
-            display: flex;
-            align-items: center;
-        }
-        
-        #contact-info p {
-            margin: 0 10px; /* Add margin between phone and email */
-        }
-        
-        #top-bar {
-            background-color: #FAF9F6; /* White color */
-            color: #800080; /* Purple color */
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 0;
-            color: white;
-        }
-        
-        #top-bar a {
-            text-decoration: none;
-            color: #800080; /* Purple color */
-            padding: 10px 20px;
-            font-weight: bold;
-        }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family: Arial, sans-serif;
+      }
 
-        #top-bar a:hover {
-            background-color: #800080; /* Purple color */
-            color: #ffffff; /* White color */
-            font-size: 120%;
-            border-radius: 50px;
-            transition-duration: 1s;
-        }
-        #scroll-bar {
-            /* Add your custom scroll-bar styles here */
-            overflow-y: scroll;
-        }
-        
-        /* #content {
+      #header {
+        background-color: #800080; /* Purple color */
+        color: white; /* White color */
+        display: flex;
+        justify-content: space-between; /* Aligns phone and email to the extreme right */
+        align-items: center;
+        padding: 10px;
+      }
+
+      #contact-info {
+        display: flex;
+        align-items: center;
+      }
+
+      #contact-info p {
+        margin: 0 10px; /* Add margin between phone and email */
+      }
+
+      #top-bar {
+        background-color: #faf9f6; /* White color */
+        color: #800080; /* Purple color */
+        padding: 10px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 0;
+        color: white;
+      }
+
+      #top-bar a {
+        text-decoration: none;
+        color: #800080; /* Purple color */
+        padding: 10px 20px;
+        font-weight: bold;
+      }
+
+      #top-bar a:hover {
+        background-color: #800080; /* Purple color */
+        color: #ffffff; /* White color */
+        font-size: 120%;
+        border-radius: 50px;
+        transition-duration: 1s;
+      }
+      #scroll-bar {
+        /* Add your custom scroll-bar styles here */
+        overflow-y: scroll;
+      }
+
+      /* #content {
             width: 100%;
             border: 1px solid #800080; /* Purple border */
-         /*   padding: 20px;
+      /*   padding: 20px;
             text-align: center;
             box-shadow: 2px 2px 5px #888888; /* Slight shadow effect */
-    
-        
-        
-        .main-content-box {
-            /* width: 1160px; */
-            /* border: 1px solid #800080; Purple border */
-            padding: 10px;
-            /* margin: 0 auto; */
-            text-align: center;
-            /* box-shadow: 0px 0px 15px 5px #888888; Slight shadow effect */
-            /* display: flex; */
-        }
 
+      .main-content-box {
+        /* width: 1160px; */
+        /* border: 1px solid #800080; Purple border */
+        padding: 10px;
+        /* margin: 0 auto; */
+        text-align: center;
+        /* box-shadow: 0px 0px 15px 5px #888888; Slight shadow effect */
+        /* display: flex; */
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="header">
-        <h1>GradConnect</h1>
-        <div id="contact-info">
-            <p>Phone: +91 87329125XX </p>
-            <p>Email: gradconnect[at]email[dot]com</p>
-        </div>
+      <h1>TPC Interview Management System</h1>
+      <div id="contact-info">
+        <p>Phone: +91 87329125XX</p>
+        <p>Email: tpo@itbhu.ac.in</p>
+      </div>
     </div>
     <div id="top-bar">
-        <a href= " {% url 'home' %}">Home</a>
-        {% if user.is_authenticated %}
-            <a href="{% url 'custom_logout' %}" style="margin-left: auto;">Logout</a>
-        {% else %}
-            <a href="{% url 'student-login' %}" style="margin-left: auto;">Login</a>
-        {% endif %}
+      <a href=" {% url 'home' %}">Home</a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'custom_logout' %}" style="margin-left: auto">Logout</a>
+      {% else %}
+      <a href="{% url 'student-login' %}" style="margin-left: auto">Login</a>
+      {% endif %}
     </div>
-    <div class="main-content-box">
-        {% block main_content %}{% endblock %}
-    </div>
-    
-
-
-    
+    <div class="main-content-box">{% block main_content %}{% endblock %}</div>
+  </body>
+</html>

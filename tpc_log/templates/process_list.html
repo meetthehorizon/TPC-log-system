@@ -41,7 +41,7 @@
     text-decoration: none;
   }
 
-  .company-button {
+  .process-button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #007bff;
@@ -53,38 +53,51 @@
     transition: background-color 0.3s;
   }
 
-  .company-button:hover {
+  .process-button:hover {
     background-color: #0056b3; /* Darker shade on hover */
   }
 </style>
 
-<h2>List of Companies</h2>
+<h2>Process List</h2>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>S.No.</th>
-      <th>Company Name</th>
+      <th>Company</th>
+      <th>SPOC</th>
+      <th>Venue</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Hiring Role</th>
       <th>Actions</th>
-      <!-- Add a new header column for the action buttons -->
     </tr>
   </thead>
   <tbody>
-    {% for company in companies %}
+    {% for process in processes %}
     <tr>
       <td>{{ forloop.counter }}</td>
-      <td>{{ company.company_name }}</td>
       <td>
-        <a href="{% url 'company_edit' company.company_id%}">Edit</a>
-        <a href="{% url 'company_delete' company.company_id %}">Delete</a>
+        <a href="{% url 'logview' process.process_id %}"
+          >{{ process.company_id.company_name }}</a
+        >
+      </td>
+      <td>{{ process.spoc_id.name }}</td>
+      <td>{{ process.venue }}</td>
+      <td>{{ process.date }}</td>
+      <td>{{ process.time }}</td>
+      <td>{{ process.hiring_role }}</td>
+      <td>
+        <a href="{% url 'process_edit' process.process_id %}">Edit</a>
+        <a href="{% url 'process_delete' process.process_id %}">Delete</a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
-<a href="{% url 'company_enlist' %}" class="btn btn-primary company-button"
-  >Add Company</a
+<a href="{% url 'process_enlist' %}" class="btn btn-primary process-button"
+  >Create New Process</a
 >
 
 {% endblock %}

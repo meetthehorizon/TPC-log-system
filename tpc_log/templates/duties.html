@@ -1,57 +1,139 @@
 {% extends 'dashboard.html' %}
 {% block content %}
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+<style>
+    h2 {
+        color: #800080; /* Purplish color for headings */
+    }
 
-        table, th, td {
-            border: 1px solid #000;
-        }
+    .right-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+    table {
+        width: 100%; /* Set the table width to 100% */
+        border-collapse: collapse;
+        /* Remove margin and padding */
+        margin: 0;
+        padding: 0;
+    }
+    
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
 
-        th {
-            background-color: #f2f2f2;
-        }
+    th {
+        background-color: #800080; /* Background color for table header */
+        color: #fff; /* Text color for table header */
+    }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-        tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
-    </style>
+    th, td {
+        border: 1px solid #800080; /* Border color for table cells */
+    }
+
+    .filter-form {
+        margin: 20px 0;
+    }
+
+    .filter-form label {
+        font-weight: bold;
+    }
+
+    .filter-form select,
+    .filter-form input[type="date"] {
+        padding: 5px;
+        border: 1px solid #800080; /* Border color for form elements */
+        border-radius: 5px;
+    }
+
+    .filter-form button {
+        padding: 5px 10px;
+        background-color: #800080; /* Background color for buttons */
+        color: #fff; /* Text color for buttons */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Hover effect transition */
+    }
+
+    .filter-form button:hover {
+        background-color: #5a005a; /* Hover background color for buttons */
+    }
+
+    .btn.btn-primary.company-button, .delete-button, .edit-button {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 5px;
+        background-color: #800080; /* Background color for buttons */
+        color: #fff; /* Text color for buttons */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Hover effect transition */
+        text-decoration: none; /* Remove underlines from anchor tags */
+    }
+
+    .btn.btn-primary.company-button:hover, .delete-button:hover, .edit-button:hover {
+        background-color: #5a005a; /* Hover background color for buttons */
+    }
+</style>
+<h2>Duty List</h2>
+
+<form method="GET" action="{% url 'duty_list' %}">
+    <div class="filter-form">
+        <label for="date_filter">Filter by Date:</label>
+        <input type="date" id="date_filter" name="date" value="{{ request.GET.date }}">
+        <label for="company_filter">Filter by Company:</label>
+        <select id="company_filter" name="company">
+            <option value="">All Companies</option>
+            {% for company in companies %}
+                <option value="{{ company.company_id }}" {% if company.company_id|slugify == request.GET.company %}selected{% endif %}>{{ company.company_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Apply Filter</button>
+    </div>
+</form>
+
 <div class="right-content">
-  <h1>Duties List</h1>
     <table>
+        <thead>
         <tr>
-            <th>Company Name</th>
-            <th>Company Role</th>
+            <th>Company</th>
             <th>Venue</th>
             <th>Date</th>
             <th>Time</th>
-            <th>SPOC Name</th>
-            <th>SPOC Phone Number</th>
+            <th>TPC Member</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Actions</th>
         </tr>
+        </thead>
+        <tbody>
         {% for duty in duties %}
         <tr>
-            {% with process_id=duty.process_id.process_id %}
-            <td><a href="{% url 'logview' process_id %}">{{ duty.process_id.company_id.company_name }}</a></td>
-            {% endwith %}
-            <td>{{ duty.process_id.hiring_role }}</td>
+            <td>{{ duty.process_id.company_id.company_name }}</td>
             <td>{{ duty.process_id.venue }}</td>
             <td>{{ duty.process_id.date }}</td>
             <td>{{ duty.process_id.time }}</td>
-            <td>{{ duty.process_id.spoc_id.name }}</td>
-            <td>{{ duty.process_id.spoc_id.phone_number }}</td>
+            <td>{{ duty.tpc_id.name }}</td>
+            <td>{{ duty.tpc_id.phone_number }}</td>
+            <td>{{ duty.tpc_id.email }}</td>
+            <td>
+                <a href="{% url 'duty_edit' duty.duty_id%}" class="edit-button">Edit</a>
+                <a href="{% url 'duty_delete' duty.duty_id %}" class="delete-button">Delete</a>
+            </td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
+    <a href="{% url 'duty_enlist' %}" class="btn btn-primary company-button"
+       >Add Duty</a
+    >
 </div>
 {% endblock %}

@@ -1,0 +1,111 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<style>
+    h2 {
+      color: #007BFF;
+    }
+  
+    table {
+      width: 90vw;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+  
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+  
+    th {
+      background-color: #007BFF;
+      color: #fff;
+    }
+  
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  
+    th, td {
+      border: 1px solid #ddd;
+    }
+  
+    .filter-form {
+      margin: 20px 0;
+    }
+  
+    .filter-form label {
+      font-weight: bold;
+    }
+  
+    .filter-form select,
+    .filter-form input[type="date"] {
+      padding: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  
+    .filter-form button {
+      padding: 5px 10px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    .filter-form button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+<h2>Duty List</h2>
+
+<form method="GET" action="{% url 'duty_list' %}">
+  <label for="date_filter">Filter by Date:</label>
+  <input type="date" id="date_filter" name="date" value="{{ request.GET.date }}">
+  <label for="company_filter">Filter by Company:</label>
+  <select id="company_filter" name="company">
+    <option value="">All Companies</option>
+    {% for company in companies %}
+      <option value="{{ company.company_id }}" {% if company.company_id|slugify == request.GET.company %}selected{% endif %}>{{ company.company_name }}</option>
+    {% endfor %}
+  </select>
+  <button type="submit">Apply Filter</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Venue</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>TPC Member</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for duty in duties %}
+      <tr>
+        <td>{{ duty.process_id.company_id.company_name }}</td>
+        <td>{{ duty.process_id.venue }}</td>
+        <td>{{ duty.process_id.date }}</td>
+        <td>{{ duty.process_id.time }}</td>
+        <td>{{ duty.tpc_id.name }}</td>
+        <td>{{ duty.tpc_id.phone_number }}</td>
+        <td>{{ duty.tpc_id.email }}</td>
+        <td>
+            <a href="{% url 'duty_edit' duty.duty_id%}">Edit</a>
+            <a href="{% url 'duty_delete' duty.duty_id %}">Delete</a>
+          </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'duty_enlist' %}" class="btn btn-primary company-button"
+  >Add Duty</a
+>
+</div>
+{% endblock %}

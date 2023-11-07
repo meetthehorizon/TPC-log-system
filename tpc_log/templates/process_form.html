@@ -1,0 +1,105 @@
+{% extends "dashboard.html" %}
+
+{% block content %}
+<style>
+    .form-container {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .form-header {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .form-table th,
+    .form-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .form-table th {
+        text-align: right;
+        width: 30%;
+    }
+
+    .form-table td {
+        text-align: left;
+    }
+
+    .form-table input[type="text"], .form-table select {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-table input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .back-button {
+        display: inline-block;
+        margin-top: 20px;
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 4px;
+    }
+</style>
+
+<div class="form-container">
+    <h2 class="form-header">Create New Process</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <table class="form-table">
+            <tr>
+                <th><label for="{{ form.company_id.id_for_label }}">Company:</label></th>
+                <td>{{ form.company_id }}</td>
+            </tr>
+            <tr>
+                <th><label for="{{ form.spoc_id.id_for_label }}">SPOC:</label></th>
+                <td>{{ form.spoc_id }}</td>
+            </tr>
+            <tr>
+                <th><label for="{{ form.venue.id_for_label }}">Venue:</label></th>
+                <td>{{ form.venue }}</td>
+            </tr>
+            <tr>
+                <th><label for="{{ form.date.id_for_label }}">Date:</label></th>
+                <td>
+                    {{ form.date }}
+                </td>
+            </tr>
+            <tr>
+                <th><label for="{{ form.time.id_for_label }}">Time:</label></th>
+                <td>
+                    {{ form.time }}
+                  
+                </td>
+            </tr>
+            <tr>
+                <th><label for="{{ form.hiring_role.id_for_label }}">Hiring Role:</label></th>
+                <td>{{ form.hiring_role }}</td>
+            </tr>
+        </table>
+        <input type="submit" value="Create Process">
+    </form>
+
+    <a href="{% url 'process_list' %}" class="back-button">Back to Process List</a>
+</div>
+
+{% endblock %}
